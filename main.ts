@@ -1,17 +1,22 @@
-//関数のオーバーロード（引数や戻り値が異なる同じ名前の関数を宣言できる）
-//そのためにシグネチャを作る
+//クラスベースのオブジェクト指向でプログラミングしてみる
 
-function add(a:number, b:number):number;  //これがシグネチャ
-function add(a:string, b:string):string;
-
-//処理
-function add(a:any, b:any):any{
-  if(typeof a === "string" && typeof b === "string"){
-    return a + b;
+//クラスには、変数とメソッドをまとめておける
+class User{
+  name:string;  //これが変数
+  constructor(name:string){  //クラスをインスタンス化する時に必要になるメソッドconstructor
+    this.name = name;
   }
-  return a + b;
-}
+  sayHi(): void{  //これがメソッド
+    console.log("hi! i am " + this.name);  //クラス内の変数を呼ぶ時は this を使う
+  }
+};
 
-//呼び出す
-console.log(add(5,3));  //8
-console.log(add("hello","world"));  //helloworld
+var ami = new User("Ami");  //インスタンス化する
+console.log(ami.name);  //変数nameにもアクセスできるし
+ami.sayHi();            //メソッドsayHiにもアクセスできる
+
+
+
+//実行結果は下記
+//Ami
+//hi! i am Ami
