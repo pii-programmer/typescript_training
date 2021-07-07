@@ -6,10 +6,17 @@
 
 //クラスには、変数とメソッドをまとめておける
 class User{
+/*
   public name:string;  //これが変数
   constructor(name:string){  //クラスをインスタンス化する時に必要になるメソッドconstructor
     this.name = name;
   }
+*/
+
+//constructor文の省略した書き方
+  constructor(public name:string){
+  }
+
   public sayHi(): void{  //これがメソッド
     console.log("hi! i am " + this.name);  //クラス内の変数を呼ぶ時は this を使う
   }

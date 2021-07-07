@@ -4,6 +4,13 @@
 //その他のアクセス修飾子は、protected, private など。
 //クラスには、変数とメソッドをまとめておける
 var User = /** @class */ (function () {
+    /*
+      public name:string;  //これが変数
+      constructor(name:string){  //クラスをインスタンス化する時に必要になるメソッドconstructor
+        this.name = name;
+      }
+    */
+    //constructor文の省略した書き方
     function User(name) {
         this.name = name;
     }
