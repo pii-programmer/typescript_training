@@ -1,26 +1,12 @@
-//クラス
-//静的メンバ
+//Interfaceとは渡ってくるオブジェクトの型に名前を付けること
 
-class User{
-  name: string;
-  constructor(name:string){  //インスタンス化される変数name
-    this.name = name;
-    User.count++;
-  }
-  sayHi(): void{       //これがメソッド
-    console.log("hi! i am " + this.name);  //クラス内の変数を呼ぶ時は this を使う
-  }
-  static count: number = 0;                    //静的メンバのインスタンスを数える
-  static showDescription(): void{              //このクラス自体の情報を表示するメソッド
-    console.log("this class is about users");  //このクラス自体の情報を表示する
-  }
+function getTotal(result: {a:number, b:number}){  //resultという変数に渡ってくるオブジェクトに型付けをする
+  return result.a + result.b;
 }
 
-var tom = new User("Tom");
-var bob = new User("Bob");
-console.log(User.count);
-User.showDescription();                        //このクラス自体の情報を呼び出している
+var result = {
+  a: 40,
+  b: 50
+}
 
-//実行結果は下記
-//2
-//this class is about users
+console.log(getTotal(result));
