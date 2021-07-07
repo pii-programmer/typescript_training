@@ -1,34 +1,21 @@
-//アクセス修飾子protectedは、親クラスに定義することで、継承クラスからもアクセスできるようになる。
+//クラス
+//静的メンバ
 
 class User{
-  constructor(protected _name:string){  //Userクラスの変数name
+  name: string;
+  constructor(name:string){  //インスタンス化される変数name
+    this.name = name;
+    User.count++;
   }
-  public sayHi(): void{  //これがメソッド
-    console.log("hi! i am " + this._name);  //クラス内の変数を呼ぶ時は this を使う
+  sayHi(): void{       //これがメソッド
+    console.log("hi! i am " + this.name);  //クラス内の変数を呼ぶ時は this を使う
   }
+  static count: number = 0;                 //静的メンバのインスタンスを数える
 }
 
-//クラスの継承の仕方
-class AdminUser extends User{  //これでUserクラスの変数やメソッドを保持しつつ、新しいクラスを作る
-//新しいAdminUserクラスが、Userクラスを継承した。この{}内に変数やメソッドをまとめられる
-  private _age:number;                     //AdminUserクラスの変数ageを宣言
-  constructor(_name:string, _age:number){  //インスタンス化する時に呼び出す変数はnameとage
-    super (_name);                         //superで親クラスの_nameを呼べる
-    this._age = _age;                      //クラス内の_ageを呼ぶのでthis
-  }
-//ここにメソッドをオーバーライドします
-  public sayHi(): void{
-    console.log("my age: " + this._age);   //クラス内の変数を呼ぶ時は this を使う
-    console.log("my name: " + this._name); //protectedにしたので、AdminUserクラスでも_nameを呼ぶことができる
-    super .sayHi();                        //親クラスのsayHiメソッドを呼んでいる
-  }
-}
-
-var bob = new AdminUser("Bob", 23);
-bob.sayHi();
-
+var tom = new User("Tom");
+var bob = new User("Bob");
+console.log(User.count);
 
 //実行結果は下記
-//my age: 23
-//my name: Bob
-//hi! i am Bob
+//2
