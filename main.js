@@ -2,5 +2,5 @@
 function add(a, b) {
     return a + b;
 }
-//関数の呼び出し方例
-console.log(add(5, 3));
+//エラーになる関数の呼び出し方
+console.log(add(5, "Hello"));
