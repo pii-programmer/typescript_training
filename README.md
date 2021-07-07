@@ -1,2 +1,3 @@
 # typescript_training
-各コミット毎に、TypeScriptの基礎学習内容が入っています。
+TypeScriptの基礎学習をしています。
+各コミット毎に、学習した内容をまとめています。
