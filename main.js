@@ -7,3 +7,5 @@ var result = {
     b: 50
 };
 console.log(getTotal(result));
+//実行結果は
+//90
