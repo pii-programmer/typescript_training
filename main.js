@@ -1,6 +1,19 @@
-//クラスベースのオブジェクト指向でプログラミングしてみる
-//アクセス修飾子privateは、クラス外には呼び出せない
-//クラスには、変数とメソッドをまとめておける
+//クラスを継承する
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var User = /** @class */ (function () {
     function User(_name) {
         this._name = _name;
@@ -8,27 +21,25 @@ var User = /** @class */ (function () {
     User.prototype.sayHi = function () {
         console.log("hi! i am " + this._name); //クラス内の変数を呼ぶ時は this を使う
     };
-    Object.defineProperty(User.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        //privateだけどクラス外で変数nameを更新する時はsetterを使う
-        set: function (newValue) {
-            this._name = newValue;
-        },
-        enumerable: false,
-        configurable: true
-    });
     return User;
 }());
-;
-var ami = new User("Ami"); //インスタンス化する
-console.log(ami.name);
-ami.name = "AMI"; //"AMI"をnewValueに引き渡す
-console.log(ami.name); //setterされた変数nameを呼び出す
-ami.sayHi(); //メソッドsayHiはpublicなのでクラス外でも呼び出せる
-//このままコンパイルするとエラーになるので、%tsc main.ts -t ES5 コマンドで実行する
+//クラスの継承の仕方
+var AdminUser = /** @class */ (function (_super) {
+    __extends(AdminUser, _super);
+    function AdminUser(_name, _age) {
+        var _this = _super.call(this, _name) || this;
+        _this._age = _age; //クラス内の_ageを呼ぶのでthis
+        return _this;
+    }
+    //ここにメソッドをオーバーライドします
+    AdminUser.prototype.sayHi = function () {
+        console.log("my age: " + this._age); //クラス内の変数を呼ぶ時は this を使う
+        _super.prototype.sayHi.call(this); //親クラスのsayHiメソッドを呼んでいる
+    };
+    return AdminUser;
+}(User));
+var bob = new AdminUser("Bob", 23);
+bob.sayHi();
 //実行結果は下記
-//Ami
-//AMI
-//hi! i am Ami
+//my age: 23
+//hi! i am Bob
