@@ -1,7 +1,7 @@
-//クラスを継承する
+//アクセス修飾子protectedは、親クラスに定義することで、継承クラスからもアクセスできるようになる。
 
 class User{
-  constructor(private _name:string){  //Userクラスの変数name
+  constructor(protected _name:string){  //Userクラスの変数name
   }
   public sayHi(): void{  //これがメソッド
     console.log("hi! i am " + this._name);  //クラス内の変数を呼ぶ時は this を使う
@@ -18,8 +18,9 @@ class AdminUser extends User{  //これでUserクラスの変数やメソッド�
   }
 //ここにメソッドをオーバーライドします
   public sayHi(): void{
-    console.log("my age: " + this._age);  //クラス内の変数を呼ぶ時は this を使う
-    super .sayHi();                       //親クラスのsayHiメソッドを呼んでいる
+    console.log("my age: " + this._age);   //クラス内の変数を呼ぶ時は this を使う
+    console.log("my name: " + this._name); //protectedにしたので、AdminUserクラスでも_nameを呼ぶことができる
+    super .sayHi();                        //親クラスのsayHiメソッドを呼んでいる
   }
 }
 
@@ -29,4 +30,5 @@ bob.sayHi();
 
 //実行結果は下記
 //my age: 23
+//my name: Bob
 //hi! i am Bob

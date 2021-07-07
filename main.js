@@ -1,4 +1,4 @@
-//クラスを継承する
+//アクセス修飾子protectedは、親クラスに定義することで、継承クラスからもアクセスできるようになる。
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -34,6 +34,7 @@ var AdminUser = /** @class */ (function (_super) {
     //ここにメソッドをオーバーライドします
     AdminUser.prototype.sayHi = function () {
         console.log("my age: " + this._age); //クラス内の変数を呼ぶ時は this を使う
+        console.log("my name: " + this._name); //protectedにしたので、AdminUserクラスでも_nameを呼ぶことができる
         _super.prototype.sayHi.call(this); //親クラスのsayHiメソッドを呼んでいる
     };
     return AdminUser;
@@ -42,4 +43,5 @@ var bob = new AdminUser("Bob", 23);
 bob.sayHi();
 //実行結果は下記
 //my age: 23
+//my name: Bob
 //hi! i am Bob
