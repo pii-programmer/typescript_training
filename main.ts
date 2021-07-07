@@ -8,18 +8,25 @@ class User{
   public sayHi(): void{  //これがメソッド
     console.log("hi! i am " + this._name);  //クラス内の変数を呼ぶ時は this を使う
   }
-//privateだけどクラス外で呼び出したい時はgetterを使う
+
   get name(){
     return this._name;
+  }
+//privateだけどクラス外で変数nameを更新する時はsetterを使う
+  set name(newValue: string){
+    this._name = newValue;
   }
 };
 
 var ami = new User("Ami");  //インスタンス化する
-console.log(ami.name);  //privateだけどgetterを使ってるのでクラス外でも呼び出せる
+console.log(ami.name);
+ami.name = "AMI";       //"AMI"をnewValueに引き渡す
+console.log(ami.name);  //setterされた変数nameを呼び出す
 ami.sayHi();            //メソッドsayHiはpublicなのでクラス外でも呼び出せる
 
 
 //このままコンパイルするとエラーになるので、%tsc main.ts -t ES5 コマンドで実行する
 //実行結果は下記
 //Ami
+//AMI
 //hi! i am Ami
