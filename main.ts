@@ -1,6 +1,6 @@
 //Interfaceとは渡ってくるオブジェクトの型に名前を付けること
+//構造的部分型
 
-//resultという変数に渡ってくるオブジェクトが多い場合は先にまとめる。ここではResultというインターフェースにまとめた
 interface Result{
   a:number;
   b:number;
@@ -12,7 +12,8 @@ function getTotal(result: Result){
 
 var result = {
   a: 40,
-  b: 50
+  b: 50,
+  c: "Hello"  //ここに何らかのプロパティが入っていたとしても、resultがaとbを持っていれば、Result型とみなされる。これが構造的部分型
 }
 
 console.log(getTotal(result));
