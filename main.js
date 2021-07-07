@@ -1,11 +1,7 @@
-//bの引数が入ってくるか分からない時は
+//引数に初期値を与える
 function add(a, b) {
-    if (b) { //もしbが存在すればという意味
-        return a + b;
-    }
-    else {
-        return a + a;
-    }
+    if (b === void 0) { b = 10; }
+    return a + b;
 }
-//aしか引数がない場合 a + a になる
-console.log(add(5)); //10
+//bの引数に何も入っていない場合は初期値の10になる
+console.log(add(5)); //15

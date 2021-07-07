@@ -1,12 +1,8 @@
-//bの引数が入ってくるか分からない時は
+//引数に初期値を与える
 
-function add(a: number, b?: number): number {
-  if (b) {  //もしbが存在すればという意味
-    return a + b;
-  } else {
-    return a + a;
-  }
+function add(a: number, b: number = 10): number {
+  return a + b;
 }
 
-//aしか引数がない場合 a + a になる
-console.log(add(5));  //10
+//bの引数に何も入っていない場合は初期値の10になる
+console.log(add(5));  //15
