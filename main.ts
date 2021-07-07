@@ -1,8 +1,8 @@
-//引数に初期値を与える
+//式のような関数定義の例
 
-function add(a: number, b: number = 10): number {
+var add = function(a: number, b: number): number {
   return a + b;
 }
 
-//bの引数に何も入っていない場合は初期値の10になる
-console.log(add(5));  //15
+//呼び出す
+console.log(add(5,3));
