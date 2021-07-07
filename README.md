@@ -1,2 +1,2 @@
 # typescript_training
- 
+各コミット毎に、TypeScriptの基礎学習内容が入っています。
