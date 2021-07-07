@@ -1,6 +1,6 @@
 //関数の定義例
 
-function add(a, b){
+function add(a: number, b: number): number {
   return a + b;
 }
 
