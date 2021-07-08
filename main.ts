@@ -1,19 +1,21 @@
-//Generics：抽象化されたデータ型
-//関数だけでなく、クラスやインターフェースにもGenericsを行える
+//Genericsに制約を付ける
 
-//具体例：
-class MyData<T>{
+//このプロパティを持つ型だけにしてね、という制約を付けるには、まずインターフェースを使う。
+interface Result{
+  a:number;
+  b:number;
+}
+
+//Tは何でも良いが、aとbのプロパティを持ったものじゃないと実行できないという制約を作る。
+class MyData<T extends Result>{
   constructor (public value:T){}
   getArray(): T[]{
     return [this.value, this.value, this.value];
   }
 }
 
-var v1 = new MyData<string>("Hello");  //インスタンスを生成
-console.log(v1.getArray());
-var v2 = new MyData<number>(3);  //インスタンスを生成
-console.log(v2.getArray());
+var v3 = new MyData<Result>({a: 40, b: 50});
+console.log(v3.getArray());
 
 //実行結果は
-//[ 'Hello', 'Hello', 'Hello' ]
-//[ 3, 3, 3 ]
+//[ {a: 40, b: 50}, {a: 40, b: 50}, {a: 40, b: 50} ]

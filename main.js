@@ -1,6 +1,5 @@
-//Generics：抽象化されたデータ型
-//関数だけでなく、クラスやインターフェースにもGenericsを行える
-//具体例：
+//Genericsに制約を付ける
+//Tは何でも良いが、aとbのプロパティを持ったものじゃないと実行できないという制約を作る。
 var MyData = /** @class */ (function () {
     function MyData(value) {
         this.value = value;
@@ -10,10 +9,7 @@ var MyData = /** @class */ (function () {
     };
     return MyData;
 }());
-var v1 = new MyData("Hello"); //インスタンスを生成
-console.log(v1.getArray());
-var v2 = new MyData(3); //インスタンスを生成
-console.log(v2.getArray());
+var v3 = new MyData({ a: 40, b: 50 });
+console.log(v3.getArray());
 //実行結果は
-//[ 'Hello', 'Hello', 'Hello' ]
-//[ 3, 3, 3 ]
+//[ {a: 40, b: 50}, {a: 40, b: 50}, {a: 40, b: 50} ]
