@@ -1,17 +1,16 @@
-//Interfaceの継承
-//finalがオプションだった場合final?としてfinalがあった場合なかった場合でif文をかく
-function getTotal(result) {
-    if (result.final) {
-        return result.a + result.b + result.final; //オプションfinalがあれば全ての和
+//インターフェースとクラスを組み合わせる
+//Interface -> Class
+//これがクラスの定義
+var User = /** @class */ (function () {
+    function User(name) {
+        this.score = 0; //変数scoreに初期値を設定してあげる
+        this.name = name;
     }
-    else {
-        return result.a + result.b; //オプションがfinalがなければa+bの和
-    }
-}
-var result = {
-    a: 40,
-    b: 50
-};
-console.log(getTotal(result));
-//実行結果は
-//90
+    User.prototype.sayHi = function () {
+        console.log("hi! i am " + this.name);
+    };
+    User.prototype.showScore = function () {
+        console.log("score " + this.score); //メソッドshowScoreの処理内容を設定している
+    };
+    return User;
+}());

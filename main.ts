@@ -1,34 +1,23 @@
-//Interfaceの継承
-//finalがオプションだった場合final?としてfinalがあった場合なかった場合でif文をかく
+//インターフェースとクラスを組み合わせる
+//Interface -> Class
 
-interface SpringResult{
-  a:number;
+//これがインターフェースの定義
+interface GameUser{
+  score: number;                  //scoreという変数
+  showScore(): void;              //showScoreというメソッド
 }
 
-interface FallResult{
-  b:number;
-}
-
-interface FinalResult extends SpringResult, FallResult{
-  final?:number;
-}
-
-function getTotal(result: FinalResult){
-  if(result.final){
-    return result.a + result.b + result.final;  //オプションfinalがあれば全ての和
-  }else{
-    return result.a + result.b;                 //オプションがfinalがなければa+bの和
+//これがクラスの定義
+class User implements GameUser {  //implements == クラスUserは、インターフェースGameUserの変数とメソッドを必ず持つこと。
+  name: string;
+  score :number = 0;                         //変数scoreに初期値を設定してあげる
+  constructor(name: string) {
+      this.name = name;
   }
-  
+  sayHi(): void {
+      console.log("hi! i am " + this.name);
+  }
+  showScore(): void {
+      console.log("score " + this.score);    //メソッドshowScoreの処理内容を設定している
+  }
 }
-
-var result = {
-  a: 40,
-  b: 50
-}
-
-console.log(getTotal(result));
-
-
-//実行結果は
-//90
