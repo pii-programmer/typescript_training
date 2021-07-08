@@ -1,13 +1,17 @@
 //Interfaceの継承
-//インターフェースは複数のインターフェースから継承できる
+//finalがオプションだった場合final?としてfinalがあった場合なかった場合でif文をかく
 function getTotal(result) {
-    return result.a + result.b + result.final;
+    if (result.final) {
+        return result.a + result.b + result.final; //オプションfinalがあれば全ての和
+    }
+    else {
+        return result.a + result.b; //オプションがfinalがなければa+bの和
+    }
 }
 var result = {
     a: 40,
-    b: 50,
-    final: 90
+    b: 50
 };
 console.log(getTotal(result));
 //実行結果は
-//180
+//90
