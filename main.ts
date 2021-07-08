@@ -1,29 +1,15 @@
-//Genericsに制約を付ける
+//Moduleはコード管理。大規模開発にてコードを整理したい時に使える。コードを部品化したり、変数やメソッドの衝突を避けるといった整理が、モジュールを作ることで行える。
 
-//このプロパティを持つ型だけにしてね、という制約を付けるには、まずインターフェースを使う。
-interface Result{
-  a:number;
-  b:number;
-}
-
-//別のインターフェースがあったとしても実行できる
-interface FinalResult{
-  a:number;
-  b:number;
-  c:string;
-}
-
-//Tは何でも良いが、aとbのプロパティを持ったものじゃないと実行できないという制約を作る。
-class MyData<T extends Result>{
-  constructor (public value:T){}
-  getArray(): T[]{
-    return [this.value, this.value, this.value];
+module UserModule{                 //これがモジュール名
+  var name = "taguchi";            //変数nameを管理する
+  module AddressModule{            //モジュールは入れ子にもできる。このように。
+    var zip = '111-1111';          //変数zipを管理する
   }
 }
 
-//呼び出しの時に型を指定すれば、インターフェースが複数あっても大丈夫。今回はFinalResultの制約を使っている。
-var v4 = new MyData<FinalResult>({a: 40, b: 50, c:"Hello"});
-console.log(v4.getArray());
+//モジュールの中の変数を表示するときは、モジュール名にドット.を付ける。
+console.log(UserModule.name);
+console.log(UserModule.AddressModule.zip);  //入れ子のモジュールは、ドット.で繋げるだけ。
 
 //実行結果は
-//[ {a: 40, b: 50, c:'Hello'}, {a: 40, b: 50, c:'Hello'}, {a: 40, b: 50, c:'Hello'} ]
+//
