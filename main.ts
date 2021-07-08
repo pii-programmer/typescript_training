@@ -1,15 +1,22 @@
-//Moduleはコード管理。大規模開発にてコードを整理したい時に使える。コードを部品化したり、変数やメソッドの衝突を避けるといった整理が、モジュールを作ることで行える。
+//外部モジュール
+//外部モジュールには、1ファイルに1モジュールしか入れられない。
 
-//別ファイルのモジュールを呼び出すためにこう書く。スラッシュ3本///忘れずに。
-/// <reference path="./reference.ts" />
+//NodeJS でよく使われる CommonJS形式でのコンパイル
+//RequireJS などで使われる AMD形式でのコンパイル
+
+//module UserModule{
+//  export var name = "taguchi";
+//}
+
+// import User = require("./user_commonjs");  //requireには拡張子は不要
+import User = require("./user_amd");         //requireには拡張子は不要
+
+console.log(User.name);
 
 
-//別ファイルのモジュールの変数も呼び出せる
-console.log(ReferenceModule.name);
-
-
-//コンパイルする時は、jsファイルが複数作られてしまうので、% tsc main.ts --out all.js コマンドを使おう。
-
+//モジュールのオプションを指定してコンパイルする。% tsc main.ts -m commonjs コマンド。
+//モジュールのオプションを指定してコンパイルする。% tsc main.ts -m amd コマンド。
 
 //実行結果は
-//taguchi
+// user_commonjs.jsファイルが作られる。
+// user_amd.jsファイルが作られる。
