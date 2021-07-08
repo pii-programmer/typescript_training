@@ -9,7 +9,8 @@ var MyData = /** @class */ (function () {
     };
     return MyData;
 }());
-var v3 = new MyData({ a: 40, b: 50 });
-console.log(v3.getArray());
+//呼び出しの時に型を指定すれば、インターフェースが複数あっても大丈夫。今回はFinalResultの制約を使っている。
+var v4 = new MyData({ a: 40, b: 50, c: "Hello" });
+console.log(v4.getArray());
 //実行結果は
-//[ {a: 40, b: 50}, {a: 40, b: 50}, {a: 40, b: 50} ]
+//[ {a: 40, b: 50, c:"Hello"}, {a: 40, b: 50, c:"Hello"}, {a: 40, b: 50, c:"Hello"} ]

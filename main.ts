@@ -6,6 +6,13 @@ interface Result{
   b:number;
 }
 
+//別のインターフェースがあったとしても実行できる
+interface FinalResult{
+  a:number;
+  b:number;
+  c:string;
+}
+
 //Tは何でも良いが、aとbのプロパティを持ったものじゃないと実行できないという制約を作る。
 class MyData<T extends Result>{
   constructor (public value:T){}
@@ -14,8 +21,9 @@ class MyData<T extends Result>{
   }
 }
 
-var v3 = new MyData<Result>({a: 40, b: 50});
-console.log(v3.getArray());
+//呼び出しの時に型を指定すれば、インターフェースが複数あっても大丈夫。今回はFinalResultの制約を使っている。
+var v4 = new MyData<FinalResult>({a: 40, b: 50, c:"Hello"});
+console.log(v4.getArray());
 
 //実行結果は
-//[ {a: 40, b: 50}, {a: 40, b: 50}, {a: 40, b: 50} ]
+//[ {a: 40, b: 50, c:'Hello'}, {a: 40, b: 50, c:'Hello'}, {a: 40, b: 50, c:'Hello'} ]
