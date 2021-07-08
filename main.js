@@ -9,7 +9,9 @@ var UserModule;
 })(UserModule || (UserModule = {}));
 //モジュールの中の変数を表示するときは、モジュール名にドット.を付ける。
 console.log(UserModule.name);
-console.log(UserModule.AddressModule.zip); //入れ子のモジュールは、ドット.で繋げるだけ。
+//モジュール名を短縮する。入れ子になった複数のモジュールをドット.で繋げていると長くなるので。
+var addr = UserModule.AddressModule;
+console.log(addr.zip);
 //実行結果は
 //taguchi
 //111-1111
